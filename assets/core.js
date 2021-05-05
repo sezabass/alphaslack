@@ -15,6 +15,7 @@ const hashChar = '#'
 const hashCode = 'hash'
 const atChar = '@'
 const atCode = 'at'
+const forbiddenCharactersRegex = /[,\.\-\=\+_\(\)\*&%\$;:'"\<\>\[\]\{\}]/
 
 const writeLetters = (sentence) => {
 
@@ -40,6 +41,7 @@ const writeLetters = (sentence) => {
                 newChar = atCode
                 break
             default: 
+                if (e.match(forbiddenCharactersRegex)) return
                 newChar = e.latinise()
                 break
         }
