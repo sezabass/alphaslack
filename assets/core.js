@@ -68,6 +68,7 @@ const copyTextToClipboard = () => {
     $transformedSentence.select()
     $transformedSentence.setSelectionRange(0, text.length)
     document.execCommand('copy');
+    $transformedSentence.blur()
     $textareaFeedback.textContent = feedbackTextCopied
 }
 
