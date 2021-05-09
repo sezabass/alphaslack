@@ -71,10 +71,12 @@ form {
 .form-row {
     flex-direction: row;
     justify-content: space-between;
+    padding-top: 6px;
 }
 
 .form-label {
     display: block;
+    padding-bottom: 4px;
 }
 
 .input-text {

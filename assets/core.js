@@ -1,8 +1,13 @@
 'use strict';
 
+// Texts
+const feedbackTextCopied = 'O texto foi copiado! ;D'
+
 // DOM elements
 const $originalSentence = document.querySelector('#original-sentence')
 const $transformedSentence = document.querySelector('#transformed-sentence')
+const $textareaFeedback = document.querySelector('#textarea-feedback')
+const $copyButton = document.querySelector('#copy-button')
 
 // Conversion characters
 const spacesChar = ' '
@@ -55,9 +60,24 @@ const writeLetters = (sentence) => {
 const triggerConversion = (event) => {
     let result = writeLetters($originalSentence.value)
     $transformedSentence.value = result
+    clearFeedback()
 }
 
-document.querySelector('#original-sentence').addEventListener('keyup', triggerConversion)
+const copyTextToClipboard = () => {
+    let text = $transformedSentence.value
+    $transformedSentence.select()
+    $transformedSentence.setSelectionRange(0, text.length)
+    document.execCommand('copy');
+    $textareaFeedback.textContent = feedbackTextCopied
+}
+
+const clearFeedback = () => {
+    $textareaFeedback.textContent = ''
+}
+
+// assign input commands
+$originalSentence.addEventListener('keyup', triggerConversion)
 document.querySelectorAll('input[name="color"]').forEach(radio => {
     radio.addEventListener('click', triggerConversion)    
 });
+$copyButton.addEventListener('click', copyTextToClipboard)
