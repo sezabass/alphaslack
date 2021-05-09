@@ -87,3 +87,30 @@ textarea {
     height: 200px;
     font-size: .8em;
 }
+
+.feedback-message {
+    color: darkgreen;
+    font-weight: bold;
+}
+
+.copy-area {
+    padding-top: 12px;
+}
+.copy-area .feedback-message {
+    padding-left: 4px;
+    line-height: 100%;
+}
+
+
+/* responsive */
+
+@media (max-width: 575px) {
+
+    form {
+        width: 80%;
+    }
+
+    .input-text {
+        width: 100%;
+    }
+}
