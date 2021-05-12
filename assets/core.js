@@ -8,6 +8,7 @@ const $originalSentence = document.querySelector('#original-sentence')
 const $transformedSentence = document.querySelector('#transformed-sentence')
 const $textareaFeedback = document.querySelector('#textarea-feedback')
 const $copyButton = document.querySelector('#copy-button')
+const $availableColors = document.querySelectorAll('input[name="color"]')
 
 // Conversion characters
 const spacesChar = ' '
@@ -22,49 +23,58 @@ const atChar = '@'
 const atCode = 'at'
 const forbiddenCharactersRegex = /[,\.\-\=\+_\(\)\*&%\$;:'"\<\>\[\]\{\}]/
 
-const writeLetters = (sentence) => {
+const writeLetters = (params) => {
 
-    const color = document.querySelector('input[name="color"]:checked').value
+    const originalSentence = params.originalSentence || ''
+    const selectedColor = params.selectedColor || 'white'
+
     let fullSentence = ''
 
-    sentence.split('').forEach(e => {
+    originalSentence.split('').forEach(e => {
         let newChar;
-        switch(e) {
-            case spacesChar: 
+        switch (e) {
+            case spacesChar:
                 fullSentence += spacesCode
                 return
-            case exclamationChar: 
+            case exclamationChar:
                 newChar = exclamationCode
                 break
-            case questionChar: 
+            case questionChar:
                 newChar = questionCode
                 break
-            case hashChar: 
+            case hashChar:
                 newChar = hashCode
                 break
-            case atChar: 
+            case atChar:
                 newChar = atCode
                 break
-            default: 
+            default:
                 if (e.match(forbiddenCharactersRegex)) return
                 newChar = e.latinise()
                 break
         }
-        
-        fullSentence += `:alphabet-${color}-${newChar}:`
+
+        fullSentence += `:alphabet-${selectedColor}-${newChar}:`
     });
 
     return fullSentence
 }
 
-const triggerConversion = (event) => {
-    let result = writeLetters($originalSentence.value)
+const triggerConversion = () => {
+    const selectedColor = Array.from($availableColors).filter((el) => el.checked)[0].value
+    const params = {
+        'selectedColor': selectedColor,
+        'originalSentence': $originalSentence.value,
+    }
+
+    const result = writeLetters(params)
     $transformedSentence.value = result
+
     clearFeedback()
 }
 
 const copyTextToClipboard = () => {
-    let text = $transformedSentence.value
+    const text = $transformedSentence.value
     $transformedSentence.select()
     $transformedSentence.setSelectionRange(0, text.length)
     document.execCommand('copy');
@@ -79,6 +89,6 @@ const clearFeedback = () => {
 // assign input commands
 $originalSentence.addEventListener('keyup', triggerConversion)
 document.querySelectorAll('input[name="color"]').forEach(radio => {
-    radio.addEventListener('click', triggerConversion)    
+    radio.addEventListener('click', triggerConversion)
 });
 $copyButton.addEventListener('click', copyTextToClipboard)
