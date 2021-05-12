@@ -23,7 +23,7 @@ const atChar = '@'
 const atCode = 'at'
 const forbiddenCharactersRegex = /[,\.\-\=\+_\(\)\*&%\$;:'"\<\>\[\]\{\}]/
 
-const writeLetters = (params) => {
+const convert = (params) => {
 
     const originalSentence = params.originalSentence || ''
     const selectedColor = params.selectedColor || 'white'
@@ -67,7 +67,7 @@ const triggerConversion = () => {
         'originalSentence': $originalSentence.value,
     }
 
-    const result = writeLetters(params)
+    const result = convert(params)
     $transformedSentence.value = result
 
     clearFeedback()
