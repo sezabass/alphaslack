@@ -1,14 +1,6 @@
 'use strict';
 
-// Texts
-const feedbackTextCopied = 'O texto foi copiado! ;D'
-
-// DOM elements
-const $originalSentence = document.querySelector('#original-sentence')
-const $transformedSentence = document.querySelector('#transformed-sentence')
-const $textareaFeedback = document.querySelector('#textarea-feedback')
-const $copyButton = document.querySelector('#copy-button')
-const $availableColors = document.querySelectorAll('input[name="color"]')
+// CORE FUNCTIONS ---------
 
 // Conversion characters
 const spacesChar = ' '
@@ -26,11 +18,12 @@ const forbiddenCharactersRegex = /[,\.\-\=\+_\(\)\*&%\$;:'"\<\>\[\]\{\}]/
 const convert = (params) => {
 
     const originalSentence = params.originalSentence || ''
+
     const selectedColor = params.selectedColor || 'white'
 
     let fullSentence = ''
 
-    originalSentence.split('').forEach(e => {
+    originalSentence.split('').forEach((e, i) => {
         let newChar;
         switch (e) {
             case spacesChar:
@@ -54,11 +47,35 @@ const convert = (params) => {
                 break
         }
 
-        fullSentence += `:alphabet-${selectedColor}-${newChar}:`
+        const selectedColorCode = _getColorCode(selectedColor, i)
+        fullSentence += `:alphabet-${selectedColorCode}-${newChar}:`
     });
 
     return fullSentence
 }
+
+const _getColorCode = (selectedColor, index) => {
+    switch (selectedColor) {
+        case 'mixed-1':
+            return index % 2 == 0 ? 'white' : 'yellow'
+        case 'mixed-2':
+            return index % 2 == 0 ? 'yellow' : 'white'
+        default:
+            return selectedColor
+    }
+}
+
+// UI Functions ---------
+
+// Texts
+const feedbackTextCopied = 'O texto foi copiado! ;D'
+
+// DOM elements
+const $originalSentence = document.querySelector('#original-sentence')
+const $transformedSentence = document.querySelector('#transformed-sentence')
+const $textareaFeedback = document.querySelector('#textarea-feedback')
+const $copyButton = document.querySelector('#copy-button')
+const $availableColors = document.querySelectorAll('input[name="color"]')
 
 const triggerConversion = () => {
     const selectedColor = Array.from($availableColors).filter((el) => el.checked)[0].value
