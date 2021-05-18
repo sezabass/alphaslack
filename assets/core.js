@@ -92,10 +92,18 @@ const triggerConversion = () => {
 
 const copyTextToClipboard = () => {
     const text = $transformedSentence.value
-    $transformedSentence.select()
-    $transformedSentence.setSelectionRange(0, text.length)
+
+    const newTextArea = document.createElement('textarea');
+    newTextArea.value = text;
+    document.body.appendChild(newTextArea);
+    newTextArea.select();
+
+    newTextArea.select()
+    newTextArea.setSelectionRange(0, text.length)
     document.execCommand('copy');
-    $transformedSentence.blur()
+    newTextArea.blur()
+    document.body.removeChild(newTextArea);
+
     $textareaFeedback.textContent = feedbackTextCopied
 }
 
