@@ -52,12 +52,23 @@ table {
 
 /* I have no idea what I'm doing */
 
+html {
+    min-height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh;
+
 }
 
 h1 {
