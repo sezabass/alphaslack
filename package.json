@@ -1,0 +1,29 @@
+{
+  "name": "alphaslack",
+  "version": "0.0.1",
+  "description": "Slack Alphabet emoji translator/converter",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sezabass/slack-alphabet.git"
+  },
+  "keywords": [
+    "slack",
+    "alphabet",
+    "emoji",
+    "translator",
+    "converter"
+  ],
+  "author": "Cesar Castro",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sezabass/slack-alphabet/issues"
+  },
+  "homepage": "https://github.com/sezabass/slack-alphabet#readme",
+  "devDependencies": {
+    "jest": "27.1.0"
+  }
+}

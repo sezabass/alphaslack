@@ -70,3 +70,7 @@ const _getColorCode = (selectedColor, index) => {
             return selectedColor
     }
 }
+
+module.exports = convert
+// export default convert
+// JEST can't read this?
