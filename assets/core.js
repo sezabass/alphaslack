@@ -13,6 +13,13 @@ const atChar = '@'
 const atCode = 'at'
 const forbiddenCharactersRegex = /[0-9,\.\-\=\+_\(\)\*&%\$;:'"\<\>\[\]\{\}\^\ˆ\\\|\/œ∑´®†¥¨øπß∂©˙∆˚¬…æΩ≈√∫~˜µ≤≥÷Œ„‰ˇ∏”’»˝Æ¸˛◊¯˘¿]/
 
+/**
+ * Converts text.
+ * @constructor
+ * @param {object} params: can receive [originalSentence|selectedColor]
+ *  - originalSentence: The non-converted text.
+ *  - selectedColor: The target color name. [white|yellow|mixed-1|mixed-2]
+ */
 const convert = (params) => {
 
     const originalSentence = params.originalSentence || ''
