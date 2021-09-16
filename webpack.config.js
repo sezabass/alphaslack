@@ -14,7 +14,7 @@ export default {
   // Path and filename of your result bundle.
   // Webpack will bundle all JavaScript into this file
   output: {
-    path: path.resolve('', 'docs'),
+    path: path.resolve('', 'dist'),
     publicPath: '',
     filename: 'assets/web.js'
   },

@@ -7,7 +7,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "start-api": "node ./src/api.js",
-    "start-web": "live-server ./docs",
+    "start-web": "live-server ./dist",
     "test": "jest"
   },
   "repository": {
