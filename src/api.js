@@ -15,10 +15,10 @@ app.get('/', (req, res) => {
     res.send(JSON.stringify(response));
 })
 
-app.get('/convert', (req, res) => {
+const convertRequest = (req, res) => {
 
     console.log('\n--- Request start ---');
-    console.log(`URL: ${req.url}`);
+    console.log(`URL: ${req.method} ${req.url}`);
 
     console.log(req.query);
     const hasValidText = (req.query.text !== undefined && req.query.text.length > 0);
@@ -45,7 +45,10 @@ app.get('/convert', (req, res) => {
 
     console.log('--- Request end ---\n');
 
-})
+}
+
+app.get('/convert', convertRequest)
+app.post('/convert', convertRequest)
 
 app.listen(port, () => {
     console.log(`Alphaslack API listening at http://localhost:${port}`);
