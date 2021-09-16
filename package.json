@@ -5,6 +5,7 @@
   "main": "./src/api.js",
   "type": "module",
   "scripts": {
+    "build": "webpack --config webpack.config.js",
     "start-api": "node ./src/api.js",
     "test": "jest"
   },
@@ -27,7 +28,9 @@
   "homepage": "https://github.com/sezabass/slack-alphabet#readme",
   "devDependencies": {
     "express": "^4.17.1",
-    "jest": "27.1.0"
+    "jest": "27.1.0",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
   },
   "dependencies": {
     "@babel/preset-env": "^7.15.6",
