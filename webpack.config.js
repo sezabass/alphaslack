@@ -1,7 +1,7 @@
 // Webpack uses this to work with directories
 import * as path from 'path';
 
-// To copy static files
+// For copying static files
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 // This is the main configuration object.
