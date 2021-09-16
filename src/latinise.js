@@ -822,6 +822,14 @@ var Latinise={};Latinise.latin_map={"Á":"A",
 "ᵤ":"u",
 "ᵥ":"v",
 "ₓ":"x"};
-String.prototype.latinise=function(){return this.replace(/[^A-Za-z0-9\[\] ]/g,function(a){return Latinise.latin_map[a]||a})};
-String.prototype.latinize=String.prototype.latinise;
-String.prototype.isLatin=function(){return this==this.latinise()}
+let latinise=function(str){return str.replace(/[^A-Za-z0-9\[\] ]/g,function(a){return Latinise.latin_map[a]||a})};
+let latinize=latinise;
+let isLatin=function(str){return str==latinise(str)}
+
+const LatiniseModule = {
+    latinise: latinise,
+    latinize: latinize,
+    isLatin: isLatin,
+}
+
+export default LatiniseModule

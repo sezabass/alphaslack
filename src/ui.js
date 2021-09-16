@@ -1,3 +1,5 @@
+import convert from './core.js'
+
 // Texts
 const feedbackTextCopied = 'O texto foi copiado! ;D'
 
