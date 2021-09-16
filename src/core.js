@@ -1,3 +1,5 @@
+import LatiniseModule from "./latinise.js";
+
 'use strict';
 
 // Conversion characters
@@ -48,7 +50,7 @@ const convert = (params) => {
                 break
             default:
                 if (e.match(forbiddenCharactersRegex)) return
-                newChar = e.latinise()
+                newChar = LatiniseModule.latinise(e)
                 break
         }
 
@@ -78,6 +80,4 @@ const _getColorCode = (selectedColor, index) => {
     }
 }
 
-module.exports = convert
-// export default convert
-// JEST can't read this?
+export default convert

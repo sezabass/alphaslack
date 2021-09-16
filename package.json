@@ -2,9 +2,11 @@
   "name": "alphaslack",
   "version": "0.0.1",
   "description": "Slack Alphabet emoji translator/converter",
-  "main": "index.js",
+  "main": "./src/api.js",
+  "type": "module",
   "scripts": {
-    "test": "jest --verbose"
+    "start-api": "node ./src/api.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,11 @@
   },
   "homepage": "https://github.com/sezabass/slack-alphabet#readme",
   "devDependencies": {
+    "express": "^4.17.1",
     "jest": "27.1.0"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.15.6",
+    "babel-jest": "^27.2.0"
   }
 }

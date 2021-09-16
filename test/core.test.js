@@ -1,7 +1,4 @@
-// import convert from "/assets/core.js";
-// JEST can't read this?
-const latinise = require("../assets/latinise.js");
-const convert = require("../assets/core.js");
+import convert from "../src/core.js";
 
 test('when asked to convert a space character then return 4 spaces', () => {
     const text = ' ';
