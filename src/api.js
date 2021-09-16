@@ -1,7 +1,7 @@
 import convert from "./core.js";
 import express from 'express';
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(function(req, res, next) {
     res.contentType('application/json');
@@ -9,7 +9,10 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    const response = {
+        'info': 'Use /convert?text=some%20text to see what happens!'
+    }
+    res.send(JSON.stringify(response));
 })
 
 app.get('/convert', (req, res) => {
