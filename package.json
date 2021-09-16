@@ -5,9 +5,9 @@
   "main": "./src/api.js",
   "type": "module",
   "scripts": {
-    "build": "rm -Rf ./dist && webpack --config webpack.config.js",
+    "build": "rm -Rf ./docs && webpack --config webpack.config.js",
     "start-api": "node ./src/api.js",
-    "start-web": "live-server ./dist",
+    "start-web": "live-server ./docs",
     "test": "jest"
   },
   "repository": {
