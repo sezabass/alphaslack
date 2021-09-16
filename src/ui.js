@@ -4,11 +4,12 @@ import convert from './core.js'
 const feedbackTextCopied = 'O texto foi copiado! ;D'
 
 // DOM elements
-const $originalSentence = document.querySelector('#original-sentence')
-const $transformedSentence = document.querySelector('#transformed-sentence')
-const $textareaFeedback = document.querySelector('#textarea-feedback')
-const $copyButton = document.querySelector('#copy-button')
+const $originalSentence = document.getElementById('original-sentence')
+const $transformedSentence = document.getElementById('transformed-sentence')
+const $textareaFeedback = document.getElementById('textarea-feedback')
+const $copyButton = document.getElementById('copy-button')
 const $availableColors = document.querySelectorAll('input[name="color"]')
+const $formConvert = document.querySelector('.form-convert')
 
 const triggerConversion = () => {
     const selectedColor = Array.from($availableColors).filter((el) => el.checked)[0].value
@@ -44,9 +45,13 @@ const clearFeedback = () => {
     $textareaFeedback.textContent = ''
 }
 
-// assign input commands
+// assign events
 $originalSentence.addEventListener('keyup', triggerConversion)
 document.querySelectorAll('input[name="color"]').forEach(radio => {
     radio.addEventListener('click', triggerConversion)
 });
 $copyButton.addEventListener('click', copyTextToClipboard)
+$formConvert.addEventListener('submit', e => {
+    e.preventDefault();
+    copyTextToClipboard();
+})
