@@ -3,17 +3,9 @@ import express from 'express';
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(function(req, res, next) {
-    res.contentType('application/json');
-    next();
-});
-
-app.get('/', (req, res) => {
-    const response = {
-        'info': 'Use /convert?text=some%20text to see what happens!'
-    }
-    res.send(JSON.stringify(response));
-})
+const isPlainText = req => {
+    return req.query.isPlainText !== undefined && req.query.isPlainText == 'true'
+}
 
 const convertRequest = (req, res) => {
 
@@ -29,23 +21,43 @@ const convertRequest = (req, res) => {
         const response = {
             'result': convertedText
         }
-        const json = JSON.stringify(response);
         console.log(`Original text: ${reqText}`);
         console.log(`Converted text: ${convertedText}`);
-        res.send(json);
+
+        if (isPlainText(req)) {
+            console.log('Returning plain text.')
+            res.send(response.result);
+        } else {
+            console.log('Returning json.')
+            const json = JSON.stringify(response);
+            res.send(json);
+        }
+        
     } else {
         const errorText = 'No text was provided for conversion';
         const errorResponse = {
             'error': errorText
         }
         const json = JSON.stringify(errorResponse);
-        console.log(`Error: ${errorText}Retornando todos os cavaleiros.`);
+        console.log(`Error: ${errorText}`);
         res.status(422).send(json);
     }
 
     console.log('--- Request end ---\n');
 
 }
+
+app.use(function(req, res, next) {
+    if (!isPlainText(req)) res.contentType('application/json');
+    next();
+});
+
+app.get('/', (req, res) => {
+    const response = {
+        'info': 'Use /convert?text=some%20text to see what happens!'
+    }
+    res.send(JSON.stringify(response));
+})
 
 app.get('/convert', convertRequest)
 app.post('/convert', convertRequest)
