@@ -12,12 +12,15 @@ const convertRequest = (req, res) => {
     console.log('\n--- Request start ---');
     console.log(`URL: ${req.method} ${req.url}`);
 
-    console.log(req.query);
-    const hasValidText = (req.query.text !== undefined && req.query.text.length > 0);
-    const reqText = hasValidText ? req.query.text : null;
+    const params = req.method == 'POST' ? req.body : req.query;
+
+    console.log(params);
+
+    const hasValidText = (params.text !== undefined && params.text.length > 0);
+    const reqText = hasValidText ? params.text : null;
 
     if (reqText != null) {
-        const convertedText = convert({originalSentence: reqText});
+        const convertedText = convert({ originalSentence: reqText });
         const response = {
             'result': convertedText
         }
@@ -32,7 +35,7 @@ const convertRequest = (req, res) => {
             const json = JSON.stringify(response);
             res.send(json);
         }
-        
+
     } else {
         const errorText = 'No text was provided for conversion';
         const errorResponse = {
@@ -47,7 +50,10 @@ const convertRequest = (req, res) => {
 
 }
 
-app.use(function(req, res, next) {
+app.use(express.urlencoded());
+app.use(express.json());
+
+app.use(function (req, res, next) {
     if (!isPlainText(req)) res.contentType('application/json');
     next();
 });
