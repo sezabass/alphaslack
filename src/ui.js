@@ -1,7 +1,7 @@
 import convert from './core.js'
 
 // Texts
-const feedbackTextCopied = 'O texto foi copiado! ;D'
+const feedbackTextCopied = 'Text copied! ;D'
 
 // DOM elements
 const $originalSentence = document.getElementById('original-sentence')
