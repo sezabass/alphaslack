@@ -50,7 +50,7 @@ const convertRequest = (req, res) => {
 
 }
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.use(function (req, res, next) {
